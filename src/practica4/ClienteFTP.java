@@ -60,15 +60,15 @@ public class ClienteFTP {
     /**
      * Descarga un archivo del servidor FTP y lo guarda en la ruta local especificada.
      *
-     * @param remoteFile Nombre del archivo en el servidor FTP.
-     * @param localFile  Ruta donde se guardará el archivo descargado.
+     * @param ficheroRemoto Nombre del archivo en el servidor FTP.
+     * @param ficheroLocal  Ruta donde se guardará el archivo descargado.
      */
-    public void descargarFichero(String remoteFile, String localFile) {
-        try (FileOutputStream fos = new FileOutputStream(localFile)) {
+    public void descargarFichero(String ficheroRemoto, String ficheroLocal) {
+        try (FileOutputStream fos = new FileOutputStream(ficheroLocal)) {
             //Comprobar si el fichero se ha descargado correctamente
-            boolean descargado = clienteFTP.retrieveFile(remoteFile, fos);
+            boolean descargado = clienteFTP.retrieveFile(ficheroRemoto, fos);
             if (descargado) {
-                System.out.println("Archivo descargado: " + localFile);
+                System.out.println("Archivo descargado: " + ficheroLocal);
             } else {
                 System.out.println("Error al descargar el archivo.");
             }
@@ -80,20 +80,20 @@ public class ClienteFTP {
     /**
      * Sube un archivo al servidor FTP.
      *
-     * @param localFilePath Ruta local del archivo que se desea subir.
+     * @param rutaFicheroLocal Ruta local del archivo que se desea subir.
      */
-    public void subirFichero(String localFilePath) {
-        File file = new File(localFilePath);
-        if (!file.exists()) {
-            System.out.println("El archivo a subir no existe: " + localFilePath);
+    public void subirFichero(String rutaFicheroLocal) {
+        File f = new File(rutaFicheroLocal);
+        if (!f.exists()) {
+            System.out.println("El archivo a subir no existe: " + rutaFicheroLocal);
             return;
         }
 
-        try (FileInputStream fis = new FileInputStream(file)) {
+        try (FileInputStream fis = new FileInputStream(f)) {
             clienteFTP.setFileType(FTP.BINARY_FILE_TYPE);
-            boolean subido = clienteFTP.storeFile(file.getName(), fis);
+            boolean subido = clienteFTP.storeFile(f.getName(), fis);
             if (subido) {
-                System.out.println("Archivo subido correctamente: " + file.getName());
+                System.out.println("Archivo subido correctamente: " + f.getName());
             } else {
                 System.err.println("Error al subir el fichero. RECUERDA, el usuario anónimo no puede subir ficheros, solo puede descargarlos.");
             }

@@ -24,6 +24,7 @@ public class Main {
         }
 
         boolean salir = false;
+        //Usar el programa hasta pulsar la opción 4:
         while (!salir) {
             switch (elegirMenu()) {
                 case 1:
