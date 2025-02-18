@@ -9,7 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class ClienteFTP {
-    public static final String SERVIDOR_FTP = "127.0.0.1";
+    public static final String SERVIDOR_FTP = "192.168.137.114";
     private final FTPClient clienteFTP = new FTPClient();
 
     /**
@@ -22,7 +22,7 @@ public class ClienteFTP {
     public boolean login(String user, String password) {
         try {
             //Conectar al servidor FTP
-            clienteFTP.connect(SERVIDOR_FTP);
+            clienteFTP.connect(SERVIDOR_FTP, 21);
 
             //Comprobar login correcto:
             boolean login = clienteFTP.login(user, password);
