@@ -9,7 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class ClienteFTP {
-    public static final String SERVIDOR_FTP = "192.168.137.114";
+    public static final String SERVIDOR_FTP = "127.0.0.1";
     private final FTPClient clienteFTP = new FTPClient();
 
     /**
